@@ -95,7 +95,7 @@ private struct SidebarView: View {
                 BrandLogo(size: 34)
                 VStack(alignment: .leading, spacing: 1) {
                     Text("Trackpad")
-                    Text("Architect")
+                    Text("Canvas")
                 }
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(Color(red: 0.05, green: 0.04, blue: 0.28))
@@ -178,7 +178,7 @@ private struct FloatingToolShelf: View {
             }
             .buttonStyle(.plain)
             .foregroundStyle(.white)
-            .help("Direct trackpad canvas (Z)")
+            .help("Direct trackpad canvas (D)")
 
             Rectangle()
                 .fill(Color.white.opacity(0.16))
@@ -427,10 +427,10 @@ private struct StatusPill: View {
             Text("·")
             Text(store.zenMode ? "Touch to draw" : store.statusMessage)
             Text("·")
-            Text("Z")
+            Text(store.zenMode ? "esc" : "D")
                 .font(.system(size: 9, weight: .bold, design: .monospaced))
                 .foregroundStyle(Color(red: 0.05, green: 0.04, blue: 0.28))
-                .frame(width: 18, height: 18)
+                .frame(width: store.zenMode ? 28 : 18, height: 18)
                 .background(Color.white.opacity(0.92))
                 .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
             Text(store.zenMode ? "to exit drawing" : "to draw")

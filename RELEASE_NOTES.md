@@ -1,10 +1,11 @@
-# Trackpad Architect v0.1.0-beta.1
+# Trackpad Canvas v0.1.0-beta.1
 
 The first public beta turns the Mac trackpad into a native architecture canvas.
 
 ## Highlights
 
 - Immediate one-finger drawing from absolute trackpad coordinates
+- Familiar `Esc` to exit drawing mode, with `D` to return
 - Two-finger pan and zoom, plus a safe pointer fallback
 - Shapes, text, arrows and connectors that remain attached while nodes move
 - Pages, layers, locking, grouping, grid snapping and two auto-layout options

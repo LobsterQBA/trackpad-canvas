@@ -24,10 +24,10 @@ jobs:
       - run: swift test
         working-directory: macos
       - run: ./script/package_beta.sh
-      - run: codesign --verify --deep --strict --verbose=2 "dist/Trackpad Architect.app"
+      - run: codesign --verify --deep --strict --verbose=2 "dist/Trackpad Canvas.app"
       - uses: actions/upload-artifact@v4
         with:
-          name: trackpad-architect-beta
+          name: trackpad-canvas-beta
           path: |
-            dist/TrackpadArchitect-0.1.0-beta.1.dmg
-            dist/TrackpadArchitect-0.1.0-beta.1.dmg.sha256
+            dist/TrackpadCanvas-0.1.0-beta.1.dmg
+            dist/TrackpadCanvas-0.1.0-beta.1.dmg.sha256

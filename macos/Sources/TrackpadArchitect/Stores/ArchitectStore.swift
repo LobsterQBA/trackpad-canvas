@@ -28,7 +28,7 @@ final class ArchitectStore: ObservableObject {
         activeLayerID = document.pages[0].layers[0].id
         let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         recoveryURL = support
-            .appendingPathComponent("Trackpad Architect", isDirectory: true)
+            .appendingPathComponent("Trackpad Canvas", isDirectory: true)
             .appendingPathComponent("Recovery.tpa")
     }
 
@@ -279,7 +279,7 @@ final class ArchitectStore: ObservableObject {
             let decoded = try JSONDecoder().decode(ArchitectDocument.self, from: data)
             replaceDocument(decoded, url: url)
         } catch {
-            presentError("Couldn’t open this Trackpad Architect document.", error)
+            presentError("Couldn’t open this Trackpad Canvas document.", error)
         }
     }
 

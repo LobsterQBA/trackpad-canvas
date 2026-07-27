@@ -1,8 +1,8 @@
-# Trackpad Architect
+# Trackpad Canvas
 
 **Your trackpad is the canvas.**
 
-Trackpad Architect is a native macOS diagramming tool for breakdowns, data
+Trackpad Canvas is a native macOS diagramming tool for breakdowns, data
 architecture, system design and presentation sketches. One finger draws the
 moment it touches the trackpad, two fingers navigate, and the pointer editor
 turns the sketch into a clean, connected diagram.
@@ -11,6 +11,7 @@ turns the sketch into a clean, connected diagram.
 
 - Pen, line, rectangle, ellipse, arrow, connector, text, select and hand tools
 - Immediate pressure-aware one-finger drawing and two-finger pan/zoom
+- `Esc` exits drawing mode; `D` or the Canvas button returns to drawing
 - Pointer and Zen interaction modes
 - Selection, move, resize, duplicate, group, delete and lock
 - Persistent connectors, 8 pt grid snapping and two auto-layout directions
@@ -22,7 +23,7 @@ turns the sketch into a clean, connected diagram.
 
 ## Install
 
-Download `TrackpadArchitect-0.1.0-beta.1.dmg` from the latest release, drag the
+Download `TrackpadCanvas-0.1.0-beta.1.dmg` from the latest release, drag the
 app to Applications, then right-click the app and choose **Open**. The first
 beta is ad-hoc signed and is not yet notarized.
 

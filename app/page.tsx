@@ -6,21 +6,20 @@ export const metadata: Metadata = {
     "Draw breakdowns and data architecture directly from your Mac trackpad, then refine and copy them into PowerPoint.",
 };
 
-const repo = "https://github.com/LobsterQBA/trackpad-architect";
+const repo = "https://github.com/LobsterQBA/trackpad-canvas";
 const download =
-  "https://github.com/LobsterQBA/trackpad-architect/releases/latest/download/TrackpadArchitect-0.1.0-beta.1.dmg";
+  "https://github.com/LobsterQBA/trackpad-canvas/releases/latest/download/TrackpadCanvas-0.1.0-beta.1.dmg";
 
 export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Trackpad Architect home">
+        <a className="brand" href="#top" aria-label="Trackpad Canvas home">
           <span className="brand-mark" aria-hidden="true" />
-          <span>Trackpad Architect</span>
+          <span>Trackpad Canvas</span>
         </a>
         <nav aria-label="Primary navigation">
           <a href="#workflow">How it works</a>
-          <a href="#templates">Templates</a>
           <a href="#install">Install</a>
           <a href={repo}>GitHub</a>
         </nav>
@@ -65,7 +64,7 @@ export default function Home() {
         </div>
         <p className="hand-note">meet your new thinking surface</p>
         <h2 id="hello-title">
-          Say hi to <span className="marker marker-mint">Trackpad Architect</span>
+          Say hi to <span className="marker marker-mint">Trackpad Canvas</span>
         </h2>
         <p>
           It starts like a sketchbook and ends like a diagramming tool.
@@ -127,23 +126,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="templates section" id="templates" aria-labelledby="templates-title">
-        <div className="section-heading split-heading">
-          <div>
-            <p className="eyebrow">Useful on day one</p>
-            <h2 id="templates-title">Start with the shape of the conversation.</h2>
-          </div>
-          <p className="hand-note arrow-note">every template stays editable ↙</p>
-        </div>
-
-        <div className="template-strip" role="list">
-          <TemplateCard name="Breakdown Tree" type="tree" color="mint" />
-          <TemplateCard name="Data Pipeline" type="pipeline" color="sky" />
-          <TemplateCard name="System Context" type="context" color="coral" />
-          <TemplateCard name="Ownership Swimlane" type="lanes" color="violet" />
-        </div>
-      </section>
-
       <section className="open-source section" aria-labelledby="open-title">
         <div className="open-copy">
           <p className="hand-note">no black box here</p>
@@ -154,7 +136,7 @@ export default function Home() {
           </p>
           <a className="text-link" href={repo}>Explore the source on GitHub →</a>
         </div>
-        <div className="code-note" aria-label="Trackpad Architect document example">
+        <div className="code-note" aria-label="Trackpad Canvas document example">
           <div className="code-bar">
             <span /><span /><span />
             <b>architecture.tpa</b>
@@ -199,13 +181,13 @@ export default function Home() {
       <section className="final-cta section">
         <p className="hand-note">less clicking, more thinking</p>
         <h2>Sketch fast. Refine clean. Present anywhere.</h2>
-        <a className="button button-dark" href={download}>Get Trackpad Architect</a>
+        <a className="button button-dark" href={download}>Get Trackpad Canvas</a>
       </section>
 
       <footer>
         <div className="brand">
           <span className="brand-mark" aria-hidden="true" />
-          <span>Trackpad Architect</span>
+          <span>Trackpad Canvas</span>
         </div>
         <p>Built for breakdowns, architecture and the next good question.</p>
         <div className="footer-links">
@@ -220,7 +202,7 @@ export default function Home() {
 
 function ProductDemo() {
   return (
-    <div className="product-demo" aria-label="Animated Trackpad Architect workflow">
+    <div className="product-demo" aria-label="Animated Trackpad Canvas workflow">
       <div className="demo-caption caption-one">1. move your fingers</div>
       <div className="trackpad" aria-hidden="true">
         <span className="touch-ring r1" /><span className="touch-ring r2" />
@@ -231,7 +213,7 @@ function ProductDemo() {
       <div className="app-window" aria-hidden="true">
         <div className="window-bar">
           <span /><span /><span />
-          <b>Trackpad Architect</b>
+          <b>Trackpad Canvas</b>
           <em>ZEN</em>
         </div>
         <div className="app-body">
@@ -259,25 +241,5 @@ function ProductDemo() {
       </div>
       <div className="demo-caption caption-two">2. watch the structure emerge</div>
     </div>
-  );
-}
-
-function TemplateCard({
-  name,
-  type,
-  color,
-}: {
-  name: string;
-  type: string;
-  color: string;
-}) {
-  return (
-    <article className={`template-card ${color}`} role="listitem">
-      <div className={`template-preview ${type}`} aria-hidden="true">
-        <span /><span /><span /><span /><i /><i /><i />
-      </div>
-      <h3>{name}</h3>
-      <p>Open, rename, redraw.</p>
-    </article>
   );
 }

@@ -2,14 +2,14 @@
 set -euo pipefail
 
 MODE="${1:-run}"
-APP_NAME="TrackpadArchitect"
-BUNDLE_ID="com.trackpadarchitect.app"
+APP_NAME="TrackpadCanvas"
+BUNDLE_ID="com.trackpadcanvas.app"
 MIN_SYSTEM_VERSION="13.0"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MACOS_DIR="$ROOT_DIR/macos"
 DIST_DIR="$ROOT_DIR/dist"
-APP_BUNDLE="$DIST_DIR/Trackpad Architect.app"
+APP_BUNDLE="$DIST_DIR/Trackpad Canvas.app"
 APP_CONTENTS="$APP_BUNDLE/Contents"
 APP_MACOS="$APP_CONTENTS/MacOS"
 APP_BINARY="$APP_MACOS/$APP_NAME"
@@ -46,8 +46,8 @@ cat >"$INFO_PLIST" <<PLIST
 <plist version="1.0"><dict>
   <key>CFBundleExecutable</key><string>$APP_NAME</string>
   <key>CFBundleIdentifier</key><string>$BUNDLE_ID</string>
-  <key>CFBundleName</key><string>Trackpad Architect</string>
-  <key>CFBundleDisplayName</key><string>Trackpad Architect</string>
+  <key>CFBundleName</key><string>Trackpad Canvas</string>
+  <key>CFBundleDisplayName</key><string>Trackpad Canvas</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundleShortVersionString</key><string>0.1.0</string>
@@ -57,18 +57,18 @@ cat >"$INFO_PLIST" <<PLIST
   <key>NSHighResolutionCapable</key><true/>
   <key>UTExportedTypeDeclarations</key>
   <array><dict>
-    <key>UTTypeIdentifier</key><string>com.trackpadarchitect.document</string>
-    <key>UTTypeDescription</key><string>Trackpad Architect Document</string>
+    <key>UTTypeIdentifier</key><string>com.trackpadcanvas.document</string>
+    <key>UTTypeDescription</key><string>Trackpad Canvas Document</string>
     <key>UTTypeConformsTo</key><array><string>public.json</string></array>
     <key>UTTypeTagSpecification</key><dict>
       <key>public.filename-extension</key><array><string>tpa</string></array>
-      <key>public.mime-type</key><string>application/vnd.trackpadarchitect+json</string>
+      <key>public.mime-type</key><string>application/vnd.trackpadcanvas+json</string>
     </dict>
   </dict></array>
   <key>CFBundleDocumentTypes</key>
   <array><dict>
-    <key>CFBundleTypeName</key><string>Trackpad Architect Document</string>
-    <key>LSItemContentTypes</key><array><string>com.trackpadarchitect.document</string></array>
+    <key>CFBundleTypeName</key><string>Trackpad Canvas Document</string>
+    <key>LSItemContentTypes</key><array><string>com.trackpadcanvas.document</string></array>
     <key>CFBundleTypeRole</key><string>Editor</string>
   </dict></array>
 </dict></plist>

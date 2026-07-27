@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "License",
-  description: "Trackpad Architect open-source licensing.",
+  description: "Trackpad Canvas open-source licensing.",
 };
 
 export default function LicensePage() {
@@ -11,7 +11,7 @@ export default function LicensePage() {
       <header className="site-header">
         <a className="brand" href="/">
           <span className="brand-mark" aria-hidden="true" />
-          <span>Trackpad Architect</span>
+          <span>Trackpad Canvas</span>
         </a>
         <span />
         <a className="button button-small" href="/">Back home</a>
@@ -21,7 +21,7 @@ export default function LicensePage() {
           <p className="eyebrow">Open source</p>
           <h1>License</h1>
           <p>
-            Trackpad Architect is released under the MIT License. The repository
+            Trackpad Canvas is released under the MIT License. The repository
             includes the complete license and third-party notices.
           </p>
           <h2>Trackpad Studio attribution</h2>
@@ -31,7 +31,7 @@ export default function LicensePage() {
           </p>
           <pre>{`MIT License
 
-Copyright (c) 2026 Trackpad Architect contributors
+Copyright (c) 2026 Trackpad Canvas contributors
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files, to deal
@@ -40,7 +40,7 @@ the rights to use, copy, modify, merge, publish, distribute,
 sublicense, and/or sell copies of the Software.`}</pre>
           <p>
             Read the complete terms and third-party notice in the{" "}
-            <a className="text-link" href="https://github.com/LobsterQBA/trackpad-architect">
+            <a className="text-link" href="https://github.com/LobsterQBA/trackpad-canvas">
               public repository
             </a>.
           </p>

@@ -2,10 +2,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "TrackpadArchitect",
+    name: "TrackpadCanvas",
     platforms: [.macOS(.v13)],
     products: [
-        .executable(name: "TrackpadArchitect", targets: ["TrackpadArchitect"])
+        .executable(name: "TrackpadCanvas", targets: ["TrackpadArchitect"])
     ],
     targets: [
         .target(name: "CMultitouchShim"),
@@ -19,4 +19,3 @@ let package = Package(
         ),
     ]
 )
-

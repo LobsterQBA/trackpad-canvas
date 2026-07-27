@@ -256,8 +256,16 @@ final class ArchitectCanvasView: NSView {
 
     override func keyDown(with event: NSEvent) {
         let key = event.charactersIgnoringModifiers?.lowercased() ?? ""
-        if key == "z", !event.modifierFlags.contains(.command) {
-            store.zenMode.toggle()
+        if event.keyCode == 53, store.zenMode {
+            store.zenMode = false
+            store.statusMessage = "Pointer mode"
+            updateZenMode()
+            needsDisplay = true
+            return
+        }
+        if key == "d", !event.modifierFlags.contains(.command), !store.zenMode {
+            store.zenMode = true
+            store.statusMessage = "Touch the trackpad to draw · Two fingers navigate"
             updateZenMode()
             needsDisplay = true
             return
@@ -432,8 +440,8 @@ final class ArchitectCanvasView: NSView {
 
     private func drawModeBadge() {
         let title = store.zenMode
-            ? "TRACKPAD CANVAS · TOUCH TO DRAW · PRESS Z TO EXIT"
-            : "POINTER MODE · PRESS Z TO DRAW"
+            ? "TRACKPAD CANVAS · TOUCH TO DRAW · PRESS ESC TO EXIT"
+            : "POINTER MODE · PRESS D TO DRAW"
         let attributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.monospacedSystemFont(ofSize: 11, weight: .semibold),
             .foregroundColor: store.zenMode ? NSColor.white : RGBAColor.ink.nsColor,

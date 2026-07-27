@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy",
-  description: "Trackpad Architect privacy policy.",
+  description: "Trackpad Canvas privacy policy.",
 };
 
 export default function PrivacyPage() {
@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       <header className="site-header">
         <a className="brand" href="/">
           <span className="brand-mark" aria-hidden="true" />
-          <span>Trackpad Architect</span>
+          <span>Trackpad Canvas</span>
         </a>
         <span />
         <a className="button button-small" href="/">Back home</a>
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <article>
           <p className="eyebrow">Plain-language policy</p>
           <h1>Privacy</h1>
-          <p>Trackpad Architect is designed as a local-first macOS application.</p>
+          <p>Trackpad Canvas is designed as a local-first macOS application.</p>
           <h2>What the app collects</h2>
           <p>
             Nothing. The beta has no account system, analytics SDK, advertising,

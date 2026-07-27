@@ -1,6 +1,6 @@
 # Third-party notices
 
-Trackpad Architect incorporates and adapts ideas and low-level multitouch code
+Trackpad Canvas incorporates and adapts ideas and low-level multitouch code
 from Trackpad Studio.
 
 ## Trackpad Studio

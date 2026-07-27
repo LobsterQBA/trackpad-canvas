@@ -22,7 +22,7 @@ async function render(path = "/") {
   );
 }
 
-test("renders the Trackpad Architect product page", async () => {
+test("renders the Trackpad Canvas product page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
@@ -33,7 +33,7 @@ test("renders the Trackpad Architect product page", async () => {
   assert.match(html, /Create/);
   assert.match(html, /Refine/);
   assert.match(html, /Present/);
-  assert.match(html, /prefers-reduced-motion|Trackpad Architect/);
+  assert.match(html, /prefers-reduced-motion|Trackpad Canvas/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 

@@ -21,8 +21,8 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://trackpad-architect.sites.openai.com"),
   title: {
-    default: "Trackpad Architect — Your trackpad is the canvas.",
-    template: "%s · Trackpad Architect",
+    default: "Trackpad Canvas — Your trackpad is the canvas.",
+    template: "%s · Trackpad Canvas",
   },
   description:
     "A native macOS canvas for turning trackpad gestures into presentation-ready system diagrams.",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "PowerPoint diagrams",
   ],
   openGraph: {
-    title: "Trackpad Architect",
+    title: "Trackpad Canvas",
     description: "Sketch fast. Refine clean. Present anywhere.",
     type: "website",
     images: [
@@ -42,13 +42,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Trackpad Architect — Your trackpad is the canvas.",
+        alt: "Trackpad Canvas — Your trackpad is the canvas.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trackpad Architect",
+    title: "Trackpad Canvas",
     description: "Your trackpad is the canvas.",
     images: ["/og.png"],
   },

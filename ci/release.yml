@@ -21,7 +21,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" \
-            --title "Trackpad Architect $GITHUB_REF_NAME" \
+            --title "Trackpad Canvas $GITHUB_REF_NAME" \
             --notes-file RELEASE_NOTES.md \
-            dist/TrackpadArchitect-0.1.0-beta.1.dmg \
-            dist/TrackpadArchitect-0.1.0-beta.1.dmg.sha256
+            dist/TrackpadCanvas-0.1.0-beta.1.dmg \
+            dist/TrackpadCanvas-0.1.0-beta.1.dmg.sha256
