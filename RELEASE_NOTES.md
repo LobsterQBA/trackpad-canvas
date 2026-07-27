@@ -4,7 +4,7 @@ The first public beta turns the Mac trackpad into a native architecture canvas.
 
 ## Highlights
 
-- Immediate one-finger drawing from absolute trackpad coordinates
+- Immediate one-finger drawing with an ephemeral trail and adaptive smoothing
 - Familiar `Esc` to exit drawing mode, with `D` to return
 - Two-finger pan and zoom, plus a safe pointer fallback
 - Shapes, text, arrows and connectors that remain attached while nodes move

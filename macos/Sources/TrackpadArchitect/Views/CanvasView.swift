@@ -25,6 +25,12 @@ final class ArchitectCanvasView: NSView {
         var points: [CanvasPoint]
     }
 
+    private struct TrailSample {
+        var point: CGPoint
+        var width: CGFloat
+        var timestamp: TimeInterval
+    }
+
     var store: ArchitectStore
     private var draft: Draft?
     private var lastDragPoint: CGPoint?
@@ -36,6 +42,8 @@ final class ArchitectCanvasView: NSView {
     private var touchFingerID: Int?
     private var touchDraft: [CanvasPoint] = []
     private var touchLineWidth = 2.5
+    private var trailSamples: [TrailSample] = []
+    private var trailTimer: Timer?
     private var twoFingerCentroid: CGPoint?
     private var twoFingerSpread: CGFloat?
     private var windowObservers: [NSObjectProtocol] = []
@@ -60,6 +68,7 @@ final class ArchitectCanvasView: NSView {
     }
 
     deinit {
+        trailTimer?.invalidate()
         restoreCursor()
         windowObservers.forEach(NotificationCenter.default.removeObserver)
     }
@@ -125,6 +134,7 @@ final class ArchitectCanvasView: NSView {
             showPresentationFrame: store.showPresentationFrame,
             in: canvasBounds
         )
+        drawTouchTrail()
         drawDraft()
         NSGraphicsContext.restoreGraphicsState()
 
@@ -318,12 +328,13 @@ final class ArchitectCanvasView: NSView {
         let rawPoint = canvasPointFromView(viewPoint)
         let point: CGPoint
         if let previous = touchDraft.last?.cgPoint {
-            let responsiveness: CGFloat = 0.34
+            let distance = hypot(rawPoint.x - previous.x, rawPoint.y - previous.y)
+            let responsiveness = min(0.78, max(0.38, 0.34 + distance / 48))
             point = CGPoint(
                 x: previous.x + (rawPoint.x - previous.x) * responsiveness,
                 y: previous.y + (rawPoint.y - previous.y) * responsiveness
             )
-            guard hypot(point.x - previous.x, point.y - previous.y) > 0.45 else { return }
+            guard hypot(point.x - previous.x, point.y - previous.y) > 0.3 else { return }
         } else {
             point = rawPoint
         }
@@ -333,9 +344,59 @@ final class ArchitectCanvasView: NSView {
             touchDrawing = true
             touchDraft = [CanvasPoint(point)]
         } else {
-            touchDraft.append(CanvasPoint(point))
+            appendInterpolatedTouchPoint(point)
         }
+        appendTrail(point: point, width: CGFloat(touchLineWidth))
         needsDisplay = true
+    }
+
+    private func appendInterpolatedTouchPoint(_ point: CGPoint) {
+        guard let previous = touchDraft.last?.cgPoint else {
+            touchDraft.append(CanvasPoint(point))
+            return
+        }
+        let distance = hypot(point.x - previous.x, point.y - previous.y)
+        let steps = max(1, Int(ceil(distance / 2.5)))
+        for step in 1...steps {
+            let progress = CGFloat(step) / CGFloat(steps)
+            touchDraft.append(
+                CanvasPoint(
+                    CGPoint(
+                        x: previous.x + (point.x - previous.x) * progress,
+                        y: previous.y + (point.y - previous.y) * progress
+                    )
+                )
+            )
+        }
+    }
+
+    private func appendTrail(point: CGPoint, width: CGFloat) {
+        trailSamples.append(
+            TrailSample(
+                point: point,
+                width: width,
+                timestamp: ProcessInfo.processInfo.systemUptime
+            )
+        )
+        if trailSamples.count > 28 {
+            trailSamples.removeFirst(trailSamples.count - 28)
+        }
+        guard trailTimer == nil else { return }
+        let timer = Timer(timeInterval: 1.0 / 60.0, repeats: true) { [weak self] timer in
+            guard let self else {
+                timer.invalidate()
+                return
+            }
+            let now = ProcessInfo.processInfo.systemUptime
+            self.trailSamples.removeAll { now - $0.timestamp > 0.24 }
+            self.needsDisplay = true
+            if self.trailSamples.isEmpty, !self.touchDrawing {
+                timer.invalidate()
+                self.trailTimer = nil
+            }
+        }
+        trailTimer = timer
+        RunLoop.main.add(timer, forMode: .common)
     }
 
     private func endTouchStroke() {
@@ -426,16 +487,54 @@ final class ArchitectCanvasView: NSView {
                 style: store.currentStyle
             )
         } else if touchDrawing {
+            var style = store.currentStyle
+            style.lineWidth = touchLineWidth
             preview = DiagramObject(
                 kind: .pen,
                 frame: CanvasRect(boundsForPoints(touchDraft)),
                 points: touchDraft,
-                style: store.currentStyle
+                style: style
             )
         }
         guard let preview else { return }
         let page = CanvasPage(name: "Preview", layers: [CanvasLayer(name: "Preview", objects: [preview])])
         CanvasRenderer.draw(page: page, showGrid: false, showPresentationFrame: false, in: bounds)
+    }
+
+    private func drawTouchTrail() {
+        guard !trailSamples.isEmpty else { return }
+        let now = ProcessInfo.processInfo.systemUptime
+        let lifetime = 0.24
+
+        for index in trailSamples.indices.dropFirst() {
+            let current = trailSamples[index]
+            let previous = trailSamples[index - 1]
+            let strength = max(0, 1 - (now - current.timestamp) / lifetime)
+            guard strength > 0 else { continue }
+            let path = NSBezierPath()
+            path.move(to: previous.point)
+            path.line(to: current.point)
+            path.lineCapStyle = .round
+            path.lineWidth = max(current.width * 2.8, 7)
+            RGBAColor.violet.nsColor.withAlphaComponent(0.12 * CGFloat(strength)).setStroke()
+            path.stroke()
+        }
+
+        guard let latest = trailSamples.last else { return }
+        let strength = max(0, 1 - (now - latest.timestamp) / lifetime)
+        let radius = max(8, latest.width * 2.2)
+        let halo = CGRect(
+            x: latest.point.x - radius,
+            y: latest.point.y - radius,
+            width: radius * 2,
+            height: radius * 2
+        )
+        RGBAColor.mint.nsColor.withAlphaComponent(0.13 * CGFloat(strength)).setFill()
+        NSBezierPath(ovalIn: halo).fill()
+        RGBAColor.violet.nsColor.withAlphaComponent(0.48 * CGFloat(strength)).setStroke()
+        let ring = NSBezierPath(ovalIn: halo.insetBy(dx: 2, dy: 2))
+        ring.lineWidth = 1.5
+        ring.stroke()
     }
 
     private func drawModeBadge() {

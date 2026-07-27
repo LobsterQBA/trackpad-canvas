@@ -57,8 +57,7 @@ enum CanvasRenderer {
             let width = object.style.lineWidth
             switch object.kind {
             case .pen:
-                let points = object.points.map { "\($0.x),\($0.y)" }.joined(separator: " ")
-                body += "\n<polyline points=\"\(points)\" fill=\"none\" stroke=\"\(stroke)\" stroke-width=\"\(width)\"/>"
+                body += "\n<path d=\"\(smoothSVGPath(object.points))\" fill=\"none\" stroke=\"\(stroke)\" stroke-width=\"\(width)\"/>"
             case .line:
                 let rect = object.frame.cgRect
                 body += "\n<line x1=\"\(rect.minX)\" y1=\"\(rect.minY)\" x2=\"\(rect.maxX)\" y2=\"\(rect.maxY)\" stroke=\"\(stroke)\" stroke-width=\"\(width)\"/>"
@@ -107,10 +106,7 @@ enum CanvasRenderer {
 
         switch object.kind {
         case .pen:
-            guard let first = object.points.first?.cgPoint else { return }
-            let path = NSBezierPath()
-            path.move(to: first)
-            for point in object.points.dropFirst() { path.line(to: point.cgPoint) }
+            guard let path = smoothPath(object.points) else { return }
             path.lineCapStyle = .round
             path.lineJoinStyle = .round
             path.lineWidth = lineWidth
@@ -146,6 +142,59 @@ enum CanvasRenderer {
         case .text:
             drawLabel(object.text, in: frame, style: object.style, centered: false)
         }
+    }
+
+    private static func smoothPath(_ points: [CanvasPoint]) -> NSBezierPath? {
+        guard let first = points.first?.cgPoint else { return nil }
+        let path = NSBezierPath()
+        path.move(to: first)
+        guard points.count > 2 else {
+            if let last = points.last?.cgPoint, last != first {
+                path.line(to: last)
+            }
+            return path
+        }
+
+        var current = first
+        for index in 1..<(points.count - 1) {
+            let control = points[index].cgPoint
+            let next = points[index + 1].cgPoint
+            let end = CGPoint(x: (control.x + next.x) / 2, y: (control.y + next.y) / 2)
+            let firstControl = CGPoint(
+                x: current.x + (control.x - current.x) * 2 / 3,
+                y: current.y + (control.y - current.y) * 2 / 3
+            )
+            let secondControl = CGPoint(
+                x: end.x + (control.x - end.x) * 2 / 3,
+                y: end.y + (control.y - end.y) * 2 / 3
+            )
+            path.curve(to: end, controlPoint1: firstControl, controlPoint2: secondControl)
+            current = end
+        }
+        if let last = points.last?.cgPoint {
+            path.line(to: last)
+        }
+        return path
+    }
+
+    private static func smoothSVGPath(_ points: [CanvasPoint]) -> String {
+        guard let first = points.first else { return "" }
+        guard points.count > 2 else {
+            guard let last = points.last else { return "M \(first.x) \(first.y)" }
+            return "M \(first.x) \(first.y) L \(last.x) \(last.y)"
+        }
+        var commands = ["M \(first.x) \(first.y)"]
+        for index in 1..<(points.count - 1) {
+            let control = points[index]
+            let next = points[index + 1]
+            let endX = (control.x + next.x) / 2
+            let endY = (control.y + next.y) / 2
+            commands.append("Q \(control.x) \(control.y) \(endX) \(endY)")
+        }
+        if let last = points.last {
+            commands.append("L \(last.x) \(last.y)")
+        }
+        return commands.joined(separator: " ")
     }
 
     private static func drawArrow(start: CGPoint, end: CGPoint, color: NSColor, width: CGFloat) {
@@ -243,4 +292,3 @@ enum CanvasRenderer {
         return "\n<path d=\"M \(start.x) \(start.y) L \(end.x) \(end.y) M \(ax) \(ay) L \(end.x) \(end.y) L \(bx) \(by)\" fill=\"none\" stroke=\"\(color)\" stroke-width=\"\(width)\"/>"
     }
 }
-

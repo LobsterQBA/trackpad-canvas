@@ -10,7 +10,8 @@ turns the sketch into a clean, connected diagram.
 ## Beta features
 
 - Pen, line, rectangle, ellipse, arrow, connector, text, select and hand tools
-- Immediate pressure-aware one-finger drawing and two-finger pan/zoom
+- Immediate pressure-aware one-finger drawing with a subtle live trail
+- Adaptive smoothing and point interpolation for continuous strokes
 - `Esc` exits drawing mode; `D` or the Canvas button returns to drawing
 - Pointer and Zen interaction modes
 - Selection, move, resize, duplicate, group, delete and lock
