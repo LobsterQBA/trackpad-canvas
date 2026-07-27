@@ -1,0 +1,12 @@
+.DS_Store
+.next/
+.vinext/
+.wrangler/
+dist/
+node_modules/
+outputs/
+work/
+macos/.build/
+macos/.build-*/
+macos/.swiftpm/
+*.dmg

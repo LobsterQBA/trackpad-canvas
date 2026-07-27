@@ -1,0 +1,5 @@
+module CMultitouchShim {
+    header "CMultitouchShim.h"
+    export *
+}
+
