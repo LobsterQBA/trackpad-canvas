@@ -73,19 +73,39 @@ pre {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
+  position: relative;
+  display: block;
   width: 38px;
-  height: 32px;
-  color: white;
-  background: var(--violet);
+  height: 34px;
+  background: var(--ink);
   border: 2px solid var(--ink);
-  border-radius: 45% 55% 48% 52% / 60% 48% 52% 40%;
-  font-family: var(--font-hand), cursive;
-  font-size: 20px;
-  font-weight: 800;
-  transform: rotate(-4deg);
-  box-shadow: 2px 2px 0 var(--ink);
+  border-radius: 11px 9px 12px 8px;
+  transform: rotate(-5deg);
+  box-shadow: 3px 3px 0 rgba(95, 77, 224, 0.35);
+}
+
+.brand-mark::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 13px;
+  width: 21px;
+  height: 8px;
+  border-top: 3px solid var(--mint);
+  border-radius: 50%;
+  transform: rotate(-11deg);
+}
+
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 7px;
+  height: 7px;
+  background: var(--coral);
+  border: 1px solid white;
+  border-radius: 50%;
 }
 
 nav {

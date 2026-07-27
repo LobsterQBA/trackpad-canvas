@@ -15,7 +15,7 @@ export default function Home() {
     <main>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Trackpad Architect home">
-          <span className="brand-mark" aria-hidden="true">TA</span>
+          <span className="brand-mark" aria-hidden="true" />
           <span>Trackpad Architect</span>
         </a>
         <nav aria-label="Primary navigation">
@@ -204,7 +204,7 @@ export default function Home() {
 
       <footer>
         <div className="brand">
-          <span className="brand-mark" aria-hidden="true">TA</span>
+          <span className="brand-mark" aria-hidden="true" />
           <span>Trackpad Architect</span>
         </div>
         <p>Built for breakdowns, architecture and the next good question.</p>

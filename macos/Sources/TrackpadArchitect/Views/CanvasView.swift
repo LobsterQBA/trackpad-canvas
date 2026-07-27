@@ -431,7 +431,9 @@ final class ArchitectCanvasView: NSView {
     }
 
     private func drawModeBadge() {
-        let title = store.zenMode ? "TRACKPAD CANVAS · TOUCH TO DRAW" : "POINTER · Z FOR CANVAS"
+        let title = store.zenMode
+            ? "TRACKPAD CANVAS · TOUCH TO DRAW · PRESS Z TO EXIT"
+            : "POINTER MODE · PRESS Z TO DRAW"
         let attributes: [NSAttributedString.Key: Any] = [
             .font: NSFont.monospacedSystemFont(ofSize: 11, weight: .semibold),
             .foregroundColor: store.zenMode ? NSColor.white : RGBAColor.ink.nsColor,

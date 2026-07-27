@@ -38,6 +38,7 @@ rm -rf "$APP_BUNDLE"
 mkdir -p "$APP_MACOS" "$APP_CONTENTS/Resources"
 cp "$BUILD_BINARY" "$APP_BINARY"
 chmod +x "$APP_BINARY"
+"$ROOT_DIR/script/generate_app_icon.sh" "$APP_CONTENTS/Resources/AppIcon.icns"
 
 cat >"$INFO_PLIST" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
@@ -48,6 +49,7 @@ cat >"$INFO_PLIST" <<PLIST
   <key>CFBundleName</key><string>Trackpad Architect</string>
   <key>CFBundleDisplayName</key><string>Trackpad Architect</string>
   <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundleShortVersionString</key><string>0.1.0</string>
   <key>CFBundleVersion</key><string>1</string>
   <key>LSMinimumSystemVersion</key><string>$MIN_SYSTEM_VERSION</string>

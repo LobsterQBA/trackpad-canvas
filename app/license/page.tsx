@@ -10,7 +10,7 @@ export default function LicensePage() {
     <>
       <header className="site-header">
         <a className="brand" href="/">
-          <span className="brand-mark" aria-hidden="true">TA</span>
+          <span className="brand-mark" aria-hidden="true" />
           <span>Trackpad Architect</span>
         </a>
         <span />
@@ -49,4 +49,3 @@ sublicense, and/or sell copies of the Software.`}</pre>
     </>
   );
 }
-

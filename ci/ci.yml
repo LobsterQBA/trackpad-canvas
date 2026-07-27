@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  macos:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift test
+        working-directory: macos
+      - run: ./script/package_beta.sh
+      - run: codesign --verify --deep --strict --verbose=2 "dist/Trackpad Architect.app"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: trackpad-architect-beta
+          path: |
+            dist/TrackpadArchitect-0.1.0-beta.1.dmg
+            dist/TrackpadArchitect-0.1.0-beta.1.dmg.sha256

@@ -57,6 +57,10 @@ npm test
 also supports a direct-compiler fallback for machines that only have Apple
 Command Line Tools.
 
+Ready-to-enable GitHub Actions definitions live in `ci/`. Move them into
+`.github/workflows/` from a GitHub credential with Workflow permission to
+activate continuous integration and tagged releases.
+
 ## Privacy
 
 The app is local-first. It has no accounts, analytics, cloud sync, tracking,

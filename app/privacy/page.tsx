@@ -10,7 +10,7 @@ export default function PrivacyPage() {
     <>
       <header className="site-header">
         <a className="brand" href="/">
-          <span className="brand-mark" aria-hidden="true">TA</span>
+          <span className="brand-mark" aria-hidden="true" />
           <span>Trackpad Architect</span>
         </a>
         <span />
@@ -48,4 +48,3 @@ export default function PrivacyPage() {
     </>
   );
 }
-
