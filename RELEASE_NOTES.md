@@ -19,4 +19,4 @@ The first public beta turns the Mac trackpad into a native architecture canvas.
 
 This build is ad-hoc signed while Developer ID notarization is being prepared.
 After copying it to Applications, right-click the app and choose **Open** the
-first time.
+first time. If macOS still blocks it, run `xattr -cr "/Applications/Trackpad Canvas.app"`.

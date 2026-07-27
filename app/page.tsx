@@ -169,7 +169,7 @@ export default function Home() {
           </li>
           <li>
             <span>3</span>
-            <div><strong>Right-click, then Open</strong><p>The beta is ad-hoc signed while notarization is prepared.</p></div>
+            <div><strong>Open it once</strong><p>Right-click the app and choose Open. If macOS still blocks it, run <code>xattr -cr "/Applications/Trackpad Canvas.app"</code> in Terminal.</p></div>
           </li>
         </ol>
         <div className="install-cta">

@@ -28,6 +28,12 @@ Download `TrackpadCanvas-0.1.0-beta.1.dmg` from the latest release, drag the
 app to Applications, then right-click the app and choose **Open**. The first
 beta is ad-hoc signed and is not yet notarized.
 
+If macOS still blocks the app, run this once in Terminal:
+
+```sh
+xattr -cr "/Applications/Trackpad Canvas.app"
+```
+
 Requires macOS 13 or later. The DMG contains a Universal 2 build for Apple
 silicon and Intel.
 
