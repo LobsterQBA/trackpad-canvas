@@ -19,7 +19,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://trackpad-architect.lobsterzzz.chatgpt.site"),
+  metadataBase: new URL("https://www.leozhao.me/projects/trackpad-canvas"),
   title: {
     default: "Trackpad Canvas — Your trackpad is the canvas.",
     template: "%s · Trackpad Canvas",

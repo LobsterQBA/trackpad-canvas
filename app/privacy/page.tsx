@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+const productHome = "/projects/trackpad-canvas";
+
 export const metadata: Metadata = {
   title: "Privacy",
   description: "Trackpad Canvas privacy policy.",
@@ -9,12 +11,12 @@ export default function PrivacyPage() {
   return (
     <>
       <header className="site-header">
-        <a className="brand" href="/">
+        <a className="brand" href={productHome}>
           <span className="brand-mark" aria-hidden="true" />
           <span>Trackpad Canvas</span>
         </a>
         <span />
-        <a className="button button-small" href="/">Back home</a>
+        <a className="button button-small" href={productHome}>Back home</a>
       </header>
       <main className="legal section">
         <article>

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 const repo = "https://github.com/LobsterQBA/trackpad-canvas";
 const download =
   "https://github.com/LobsterQBA/trackpad-canvas/releases/latest/download/TrackpadCanvas-0.1.0-beta.1.dmg";
+const productPath = (path = "") => `/projects/trackpad-canvas${path}`;
 
 export default function Home() {
   return (
@@ -169,7 +170,11 @@ export default function Home() {
           </li>
           <li>
             <span>3</span>
-            <div><strong>Open it once</strong><p>Right-click the app and choose Open. If macOS still blocks it, run <code>xattr -cr "/Applications/Trackpad Canvas.app"</code> in Terminal.</p></div>
+            <div><strong>Run one command in Terminal</strong><p>Open Terminal, paste <code>xattr -cr "/Applications/Trackpad Canvas.app"</code>, then press Return.</p></div>
+          </li>
+          <li>
+            <span>4</span>
+            <div><strong>Open Trackpad Canvas</strong><p>This beta is open source but not yet notarized by Apple, so the one-time command lets macOS open the app normally.</p></div>
           </li>
         </ol>
         <div className="install-cta">
@@ -192,8 +197,8 @@ export default function Home() {
         <p>Built for breakdowns, architecture and the next good question.</p>
         <div className="footer-links">
           <a href={repo}>GitHub</a>
-          <a href="/privacy">Privacy</a>
-          <a href="/license">License</a>
+          <a href={productPath("/privacy")}>Privacy</a>
+          <a href={productPath("/license")}>License</a>
         </div>
       </footer>
     </main>
