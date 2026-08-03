@@ -24,7 +24,7 @@ turns the sketch into a clean, connected diagram.
 
 ## Install
 
-Download `TrackpadCanvas-0.1.0-beta.1.dmg` from the latest release, drag the
+Download `TrackpadCanvas-0.1.0-beta.2.dmg` from the latest release, drag the
 app to Applications, then right-click the app and choose **Open**. The first
 beta is ad-hoc signed and is not yet notarized.
 

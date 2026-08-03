@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const repo = "https://github.com/LobsterQBA/trackpad-canvas";
 const download =
-  "https://github.com/LobsterQBA/trackpad-canvas/releases/latest/download/TrackpadCanvas-0.1.0-beta.1.dmg";
+  "https://github.com/LobsterQBA/trackpad-canvas/releases/latest/download/TrackpadCanvas-0.1.0-beta.2.dmg";
 const productPath = (path = "") => `/projects/trackpad-canvas${path}`;
 
 export default function Home() {
@@ -52,7 +52,7 @@ export default function Home() {
             </a>
           </div>
           <p className="release-note">
-            v0.1.0-beta.1 · macOS 13+ · Apple silicon &amp; Intel
+            v0.1.0-beta.2 · macOS 13+ · Apple silicon &amp; Intel
           </p>
         </div>
 
@@ -157,7 +157,7 @@ export default function Home() {
       <section className="install section" id="install" aria-labelledby="install-title">
         <div className="section-heading">
           <p className="eyebrow">Beta installation</p>
-          <h2 id="install-title">On your trackpad in three steps.</h2>
+          <h2 id="install-title">On your trackpad in four steps.</h2>
         </div>
         <ol className="install-steps">
           <li>

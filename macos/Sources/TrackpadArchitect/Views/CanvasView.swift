@@ -96,6 +96,10 @@ final class ArchitectCanvasView: NSView {
             restoreCursor()
             return
         }
+        // Raw trackpad touches don't produce a mouseDown event, so they never
+        // naturally focus this NSView. Keep the canvas focused while drawing
+        // so Escape is always delivered to keyDown(_:).
+        window?.makeFirstResponder(self)
         guard !hiddenCursor else { return }
         CGAssociateMouseAndMouseCursorPosition(boolean_t(0))
         NSCursor.hide()

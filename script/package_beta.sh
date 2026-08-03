@@ -7,7 +7,7 @@ DIST_DIR="$ROOT_DIR/dist"
 APP_NAME="Trackpad Canvas"
 EXECUTABLE="TrackpadCanvas"
 APP_BUNDLE="$DIST_DIR/$APP_NAME.app"
-DMG_PATH="$DIST_DIR/TrackpadCanvas-0.1.0-beta.1.dmg"
+DMG_PATH="$DIST_DIR/TrackpadCanvas-0.1.0-beta.2.dmg"
 
 mkdir -p "$DIST_DIR"
 cd "$MACOS_DIR"
@@ -50,7 +50,7 @@ cat >"$APP_BUNDLE/Contents/Info.plist" <<PLIST
   <key>CFBundleDisplayName</key><string>$APP_NAME</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
-  <key>CFBundleShortVersionString</key><string>0.1.0-beta.1</string>
+  <key>CFBundleShortVersionString</key><string>0.1.0-beta.2</string>
   <key>CFBundleVersion</key><string>1</string>
   <key>LSMinimumSystemVersion</key><string>13.0</string>
   <key>NSPrincipalClass</key><string>NSApplication</string>

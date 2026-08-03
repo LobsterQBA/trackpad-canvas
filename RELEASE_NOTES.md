@@ -1,3 +1,10 @@
+# Trackpad Canvas v0.1.0-beta.2
+
+## Fixed
+
+- Esc now reliably exits direct drawing mode, including when drawing starts
+  from a raw trackpad touch without a preceding mouse click.
+
 # Trackpad Canvas v0.1.0-beta.1
 
 The first public beta turns the Mac trackpad into a native architecture canvas.

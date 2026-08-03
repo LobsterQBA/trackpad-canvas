@@ -23,5 +23,5 @@ jobs:
           gh release create "$GITHUB_REF_NAME" \
             --title "Trackpad Canvas $GITHUB_REF_NAME" \
             --notes-file RELEASE_NOTES.md \
-            dist/TrackpadCanvas-0.1.0-beta.1.dmg \
-            dist/TrackpadCanvas-0.1.0-beta.1.dmg.sha256
+            dist/TrackpadCanvas-0.1.0-beta.2.dmg \
+            dist/TrackpadCanvas-0.1.0-beta.2.dmg.sha256
