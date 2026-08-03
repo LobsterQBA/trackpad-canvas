@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const repo = "https://github.com/LobsterQBA/trackpad-canvas";
 const download =
-  "https://github.com/LobsterQBA/trackpad-canvas/releases/latest/download/TrackpadCanvas-0.1.0-beta.2.dmg";
+  "https://github.com/LobsterQBA/trackpad-canvas/releases/download/v0.1.0-beta.2/TrackpadCanvas-0.1.0-beta.2.dmg";
 const productPath = (path = "") => `/projects/trackpad-canvas${path}`;
 
 export default function Home() {

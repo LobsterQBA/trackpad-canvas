@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-async function render(path = "/") {
+const productPath = "/projects/trackpad-canvas";
+
+async function render(path = productPath) {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${path}`);
   const { default: worker } = await import(workerUrl.href);
@@ -39,12 +41,11 @@ test("renders the Trackpad Canvas product page", async () => {
 
 test("renders privacy and license pages", async () => {
   const [privacy, license] = await Promise.all([
-    render("/privacy"),
-    render("/license"),
+    render(`${productPath}/privacy`),
+    render(`${productPath}/license`),
   ]);
   assert.equal(privacy.status, 200);
   assert.equal(license.status, 200);
   assert.match(await privacy.text(), /local-first macOS application/i);
   assert.match(await license.text(), /Trackpad Studio attribution/i);
 });
-

@@ -21,6 +21,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" \
+            --prerelease \
             --title "Trackpad Canvas $GITHUB_REF_NAME" \
             --notes-file RELEASE_NOTES.md \
             dist/TrackpadCanvas-0.1.0-beta.2.dmg \

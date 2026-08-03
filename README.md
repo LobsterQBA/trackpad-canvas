@@ -24,9 +24,9 @@ turns the sketch into a clean, connected diagram.
 
 ## Install
 
-Download `TrackpadCanvas-0.1.0-beta.2.dmg` from the latest release, drag the
-app to Applications, then right-click the app and choose **Open**. The first
-beta is ad-hoc signed and is not yet notarized.
+Download [`TrackpadCanvas-0.1.0-beta.2.dmg`](https://github.com/LobsterQBA/trackpad-canvas/releases/download/v0.1.0-beta.2/TrackpadCanvas-0.1.0-beta.2.dmg),
+drag the app to Applications, then right-click the app and choose **Open**.
+The beta is ad-hoc signed and is not yet notarized.
 
 If macOS still blocks the app, run this once in Terminal:
 
