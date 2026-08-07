@@ -36,7 +36,6 @@ test("renders the Trackpad Canvas product page", async () => {
   assert.match(html, /Refine/);
   assert.match(html, /Present/);
   assert.match(html, /prefers-reduced-motion|Trackpad Canvas/);
-  assert.match(html, /\/_vercel\/insights\/script\.js/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 

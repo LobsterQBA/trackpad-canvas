@@ -1,6 +1,23 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Caveat, IBM_Plex_Mono } from "next/font/google";
+import { Analytics, type AnalyticsProps } from "@vercel/analytics/next";
 import "./globals.css";
+
+const analyticsOrigin = "https://trackpad-canvas.vercel.app";
+
+function analyticsProps(): AnalyticsProps {
+  const configString =
+    process.env.NEXT_PUBLIC_VERCEL_OBSERVABILITY_CLIENT_CONFIG ??
+    process.env.VERCEL_OBSERVABILITY_CLIENT_CONFIG;
+  if (!configString) return {};
+
+  const config = JSON.parse(configString).analytics ?? {};
+  return Object.fromEntries(
+    ["scriptSrc", "viewEndpoint", "eventEndpoint", "sessionEndpoint"]
+      .filter((key) => config[key])
+      .map((key) => [key, new URL(config[key], analyticsOrigin).toString()]),
+  );
+}
 
 const display = Bricolage_Grotesque({
   variable: "--font-display",
@@ -63,7 +80,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${display.variable} ${handwriting.variable} ${mono.variable}`}>
         {children}
-        <script defer src="/_vercel/insights/script.js" />
+        <Analytics {...analyticsProps()} />
       </body>
     </html>
   );
