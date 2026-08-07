@@ -132,8 +132,8 @@ export default function Home() {
           <p className="hand-note">no black box here</p>
           <h2 id="open-title">A focused Mac tool, built in the open.</h2>
           <p>
-            Your documents are versioned <code>.tpa</code> files. There is no
-            login, cloud sync, tracking pixel, or hidden AI service.
+            Your documents are versioned <code>.tpa</code> files. The Mac app
+            has no login, cloud sync, app telemetry, or hidden AI service.
           </p>
           <a className="text-link" href={repo}>Explore the source on GitHub →</a>
         </div>

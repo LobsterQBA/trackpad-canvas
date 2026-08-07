@@ -37,8 +37,9 @@ export default function PrivacyPage() {
           </p>
           <h2>This website</h2>
           <p>
-            The product website serves static content and download links. It
-            does not set product analytics cookies or build an advertising profile.
+            The product website uses Vercel Web Analytics to count anonymous
+            visits and page views. It does not use analytics cookies or build
+            an advertising profile.
           </p>
           <h2>Updates</h2>
           <p>

@@ -63,6 +63,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${display.variable} ${handwriting.variable} ${mono.variable}`}>
         {children}
+        <script defer src="/_vercel/insights/script.js" />
       </body>
     </html>
   );
