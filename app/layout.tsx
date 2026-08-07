@@ -3,7 +3,12 @@ import { Bricolage_Grotesque, Caveat, IBM_Plex_Mono } from "next/font/google";
 import { Analytics, type AnalyticsProps } from "@vercel/analytics/next";
 import "./globals.css";
 
-const analyticsOrigin = "https://trackpad-canvas.vercel.app";
+const analyticsProxy = "/__analytics/trackpad-canvas";
+
+function proxiedAnalyticsPath(value: string) {
+  const pathname = value.startsWith("http") ? new URL(value).pathname : `/${value.replace(/^\//, "")}`;
+  return `${analyticsProxy}${pathname}`;
+}
 
 function analyticsProps(): AnalyticsProps {
   const configString =
@@ -15,7 +20,7 @@ function analyticsProps(): AnalyticsProps {
   return Object.fromEntries(
     ["scriptSrc", "viewEndpoint", "eventEndpoint", "sessionEndpoint"]
       .filter((key) => config[key])
-      .map((key) => [key, new URL(config[key], analyticsOrigin).toString()]),
+      .map((key) => [key, proxiedAnalyticsPath(config[key])]),
   );
 }
 
